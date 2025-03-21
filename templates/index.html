@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Início{% endblock %}
+
+{% block content %}
+    <h1>Últimos Posts</h1>
+    
+    {% for post in posts %}
+    <div class="post-preview">
+        <h2><a href="{{ url_for('post', post_id=post['id']) }}">{{ post['title'] }}</a></h2>
+        <small>{{ post['created_at'] }}</small>
+        <p>{{ post['content'][:150] }}...</p>
+    </div>
+    {% endfor %}
+{% endblock %}

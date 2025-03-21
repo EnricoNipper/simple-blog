@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post['title'] }}{% endblock %}
+
+{% block content %}
+    <article>
+        <h1>{{ post['title'] }}</h1>
+        <small>{{ post['created_at'] }}</small>
+        <div class="post-content">
+            {{ post['content'] | safe }}
+        </div>
+        
+        <div class="actions">
+            <a href="{{ url_for('edit', post_id=post['id']) }}" class="button">Editar</a>
+            <form action="{{ url_for('delete', post_id=post['id']) }}" method="POST">
+                <button type="submit" class="delete-btn" onclick="return confirm('Tem certeza?')">Excluir</button>
+            </form>
+        </div>
+    </article>
+{% endblock %}
